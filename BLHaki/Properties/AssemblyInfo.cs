@@ -12,11 +12,11 @@ using MelonLoader;
 [assembly: AssemblyTrademark(BLHaki.BuildInfo.Company)]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-//[assembly: Guid("")]
+// [assembly: Guid("")]
 [assembly: AssemblyVersion(BLHaki.BuildInfo.Version)]
 [assembly: AssemblyFileVersion(BLHaki.BuildInfo.Version)]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonInfo(typeof(BLHaki.BLHaki), BLHaki.BuildInfo.Name, BLHaki.BuildInfo.Version, BLHaki.BuildInfo.Author, BLHaki.BuildInfo.DownloadLink)]
+[assembly: MelonInfo(typeof(BLHaki.HakiMain), BLHaki.BuildInfo.Name, BLHaki.BuildInfo.Version, BLHaki.BuildInfo.Author, BLHaki.BuildInfo.DownloadLink)]
 
 
 // Create and Setup a MelonModGame to mark a Mod as Universal or Compatible with specific Games.

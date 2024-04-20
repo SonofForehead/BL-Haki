@@ -1,11 +1,12 @@
-﻿using System;
-using MelonLoader;
-using BoneLib;
+﻿using MelonLoader;
 
-namespace ArmamentHaki
+namespace BLHaki
 {
-    public static class ArmamentMain
+    public class ArmamentMain : MelonMod
     {
-        
+        public static void ActivateHaki()
+        {
+            HakiAudioManager.Play(HakiMain.ArmamentSFX);
+        }
     }
 }
