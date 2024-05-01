@@ -55,6 +55,10 @@
     <Reference Include="Mono.CSharp">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Mono.CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="SLZ.Marrow, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\SLZ.Marrow.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -80,18 +84,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArmamentHaki\ArmamentHakiMain.cs" />
-    <Compile Include="Audio.cs" />
-    <Compile Include="BoneMenu.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="HakiTypes\ArmamentHaki\ArmamentHakiMain.cs" />
+    <Compile Include="Core\AudioManager.cs" />
+    <Compile Include="Core\BoneMenu.cs" />
+    <Compile Include="HakiTypes\ConquerorsHaki\ConquerorsHakiLogic.cs" />
+    <Compile Include="Resources\LoadBundles.cs" />
+    <Compile Include="Core\Main.cs" />
+    <Compile Include="Core\Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ConquerorsHaki\" />
+    <Folder Include="Resources\Bundles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>COPY "$(TargetPath)" "D:\Steam\steamapps\common\BONELAB\Mods"</PostBuildEvent>
   </PropertyGroup>
 </Project>

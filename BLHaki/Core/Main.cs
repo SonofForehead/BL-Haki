@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using AudioImportLib;
+using BoneLib;
 using MelonLoader;
 using UnityEngine;
 
@@ -16,23 +17,22 @@ namespace BLHaki
 
     public class HakiMain : MelonMod
     {
-        static readonly string path_UserData = MelonUtils.UserDataDirectory;
+        static string path_UserData = MelonUtils.UserDataDirectory;
         public static string HakiSFXPath = path_UserData + "/BLHakiSFX";
         public static AudioClip ArmamentSFX;
+        public static Collider[] brainsInsideZone;
+        public static Vector3 position = Player.rigManager.physicsRig._lastHeadPos;
+
+        public override void OnUpdate() // I'm slowly adding things from conquerors haki logic to see whats breaking it
+        {
+            MelonLogger.Msg("its workin nice");
+            position = Player.rigManager.physicsRig._lastHeadPos;
+            //brainsInsideZone = Physics.OverlapSphere(position, 100f);
+        }
         public override void OnInitializeMelon()
         {
             BoneMenu.CreateBoneMenu();
             CreateAssetFolders();
-            LoadAudio();
-        }
-        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
-        {
-            HakiAudioManager.spawnAudioObject = new GameObject("HakiAudioManager");
-            HakiAudioManager.spawnAudioObject.AddComponent<AudioSource>();
-            HakiAudioManager.spawnAudioObject.GetComponent<AudioSource>().playOnAwake = false;
-        }
-        private static void LoadAudio()
-        {
             ArmamentSFX = API.LoadAudioClip($"{path_UserData}/BLHakiSFX/HakiArmamentSFX.wav");
         }
         static void CreateAssetFolders()
