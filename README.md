@@ -1,0 +1,1 @@
+BL Haki!! It'll include Conquerors Haki and Armament Haki, I think Observation Haki would work by showing a line of where the NPC will go, and I might add it in a an update, but for now I'm releasing with just Armament Haki and Conquerors Haki
