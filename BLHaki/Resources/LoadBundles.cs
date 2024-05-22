@@ -1,5 +1,4 @@
-﻿
-namespace BLHaki
+﻿namespace BLHaki
 {
     public static class Assets
     {

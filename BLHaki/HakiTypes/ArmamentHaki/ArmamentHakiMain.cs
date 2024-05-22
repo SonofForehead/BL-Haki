@@ -1,24 +1,33 @@
 ﻿using BoneLib;
 using MelonLoader;
+using SLZ.Marrow.VoidLogic;
+using SLZ.Rig;
 using UnityEngine;
 
 namespace BLHaki
 {
     public class ArmamentMain : MelonMod
     {
-        public static void OnSetEnabled(bool enable)
+        public static bool armamentEnabled;
+
+        public static void OnEnable(bool enable)
         {
-            if(enable && Player.rigManager.physicsRig.rightHand.physHand.forceMultiplier == 0)
+            if(enable)
             {
-                Player.rigManager.physicsRig.rightHand.physHand.forceMultiplier = 1;
+                armamentEnabled = true;
+            }
+            else
+            {
+                armamentEnabled = false;
             }
         }
-        public static void ActivateHaki()
+
+        public static void ActivateArmHaki()
         {
             if (HakiAudioManager.HakiManager.GetComponent<AudioSource>().isPlaying != true)
             {
                 HakiAudioManager.Play(HakiMain.ArmamentSFX);
             }
         }
-    } 
+    }
 }

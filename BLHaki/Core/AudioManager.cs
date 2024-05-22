@@ -1,21 +1,14 @@
-﻿using MelonLoader;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BLHaki
 {
-    public class HakiAudioManager : MelonMod
-    {
-        public static GameObject HakiManager;
-        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+        public class HakiAudioManager
         {
-            HakiManager = new GameObject("HakiManager");
-            HakiManager.AddComponent<AudioSource>();
-            HakiManager.GetComponent<AudioSource>().playOnAwake = false;
+            public static GameObject HakiManager;
+            public static void Play(AudioClip clip)
+            {
+                AudioSource getAudio = HakiManager.GetComponent<AudioSource>();
+                getAudio.PlayOneShot(clip, 1f);
+            }
         }
-
-        public static void Play(AudioClip clip)
-        {
-            HakiManager.GetComponent<AudioSource>().PlayOneShot(clip, 0.2f);
-        }
-    }
 }
