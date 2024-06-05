@@ -37,14 +37,32 @@
     <Reference Include="0Harmony">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\0Harmony.dll</HintPath>
     </Reference>
+    <Reference Include="Accessibility" />
     <Reference Include="Assembly-CSharp">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="AudioImportLib">
       <HintPath>D:\Steam\steamapps\common\BONELAB\Mods\AudioImportLib.dll</HintPath>
     </Reference>
     <Reference Include="BoneLib">
       <HintPath>D:\Steam\steamapps\common\BONELAB\Mods\BoneLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang.Compiler">
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Boo.Lang.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang.Useful">
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Boo.Lang.Useful.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Grpc.Core.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
@@ -76,9 +94,20 @@
     <Reference Include="UnhollowerRuntimeLib">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\UnhollowerRuntimeLib.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.StressLevelZero.VRS">
+      <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Managed\Unity.RenderPipelines.Universal.StressLevelZero.VRS.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -92,13 +121,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HakiTypes\ArmamentHaki\ArmamentHakiMain.cs" />
-    <Compile Include="Core\AudioManager.cs" />
-    <Compile Include="Core\BoneMenu.cs" />
-    <Compile Include="HakiTypes\ConquerorsHaki\ConquerorsHakiLogic.cs" />
+    <Compile Include="src\HakiTypes\ArmamentHaki\ArmamentHakiLogic.cs" />
+    <Compile Include="src\AudioManager.cs" />
+    <Compile Include="src\BoneMenu.cs" />
+    <Compile Include="src\HakiTypes\ConquerorsHaki\ConquerorsHakiLogic.cs" />
     <Compile Include="Resources\LoadBundles.cs" />
-    <Compile Include="Core\Main.cs" />
-    <Compile Include="Core\Patches.cs" />
+    <Compile Include="src\HakiTypes\ConquerorsHaki\ConquerorsVolume.cs" />
+    <Compile Include="src\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
