@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using MelonLoader;
 using BoneLib;
-using SLZ.Marrow.VoidLogic;
+using Il2CppSLZ.Bonelab;
+using Il2CppSLZ.Bonelab.VoidLogic;
+using Il2CppSLZ.Bonelab.Obsolete;
+using Il2CppSLZ.Player;
 
 namespace BLHaki
 {
     public class ConquerorsLogic : MelonMod
     {
         public static Vector3 headPos;
-        public static DamageVolumeNode damageVolume;
+        public static DamageVolume damageVolume;
         public static AudioSource conqSFX;
         public static float conqTimer = 2f;
         public static bool conqTimerRunning = false;
@@ -37,23 +40,27 @@ namespace BLHaki
 
         public static void ActivateConquerorsHaki()
         {
-            Player.rigManager.health.TAKEDAMAGE(-9999f);
-            HakiAudioManager.HakiManager.GetComponent<DamageVolumeNode>().enabled = true;
+            //Player.RigManager.GetComponentInChildren<Health>().healthMode = Health.HealthMode.Invincible;
+            HakiAudioManager.HakiManager.GetComponent<DamageVolume>().enabled = true;
         }
 
         public static void DeactivateConquerorsHaki()
         {
             conqTimerRunning = false;
             conqTimer = 2f;
-            HakiAudioManager.HakiManager.GetComponent<DamageVolumeNode>().enabled = false;
+            //Player.RigManager.GetComponentInChildren<Health>().healthMode = Health.HealthMode.Mortal;
+            HakiAudioManager.HakiManager.GetComponent<DamageVolume>().enabled = false;
         }
 
         public static void ConquerorsHakiLogic() // OnUpdate
         {
-            if (Player.rigManager != null)
+            if (Player.RigManager)
             {
-                headPos = Player.physicsRig.m_head.position;
+                headPos = Player.PhysicsRig.m_head.position;
                 HakiAudioManager.HakiManager.transform.position = headPos;
+
+                HakiAudioManager.HakiManager.GetComponent<SphereCollider>().radius = HakiBoneMenu.radius;
+                damageVolume._effectiveDistance = HakiBoneMenu.radius;
             }
 
             if (conqTimerRunning)
@@ -67,15 +74,9 @@ namespace BLHaki
                 DeactivateConquerorsHaki();
             }
 
-            if (ArmamentLogic.armamentEnabled && Player.rigManager && Player.rightController._thumbstickDown)
+            if (Player.RigManager && Player.RightController._thumbstickDown)
             {
                 ConquerorsLogic.ConquerorsHakiFunction();
-            }
-
-            if(Player.rigManager)
-            {
-                HakiAudioManager.HakiManager.GetComponent<SphereCollider>().radius = HakiBoneMenu.radius;
-                damageVolume._effectiveDistance = HakiBoneMenu.radius;
             }
         }
 
@@ -84,14 +85,12 @@ namespace BLHaki
             conqSFX = HakiAudioManager.HakiManager.GetComponent<AudioSource>();
 
             // Add VoidLogicDamageVolume
-            HakiAudioManager.HakiManager.AddComponent<DamageVolumeNode>();
+            HakiAudioManager.HakiManager.AddComponent<DamageVolume>();
             HakiAudioManager.HakiManager.AddComponent<SphereCollider>();
             HakiAudioManager.HakiManager.GetComponent<SphereCollider>().isTrigger = true;
-            damageVolume = HakiAudioManager.HakiManager.GetComponent<DamageVolumeNode>();
+            damageVolume = HakiAudioManager.HakiManager.GetComponent<DamageVolume>();
             damageVolume.enabled = false;
-            damageVolume._damageType = SLZ.Marrow.Data.AttackType.Fire;
-            damageVolume._tickFrequency = 0;
-            damageVolume._damageSourceTransform = HakiAudioManager.HakiManager.transform;
+            damageVolume._damageType = Il2CppSLZ.Marrow.Data.AttackType.Fire;
             damageVolume._damage = 100;
         }
     }

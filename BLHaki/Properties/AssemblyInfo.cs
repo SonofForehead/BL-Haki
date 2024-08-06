@@ -2,20 +2,9 @@
 using System.Resources;
 using System.Runtime.InteropServices;
 using MelonLoader;
-
-[assembly: AssemblyTitle(BLHaki.BuildInfo.Name)]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany(BLHaki.BuildInfo.Company)]
-[assembly: AssemblyProduct(BLHaki.BuildInfo.Name)]
-[assembly: AssemblyCopyright("Created by " + BLHaki.BuildInfo.Author)]
 [assembly: AssemblyTrademark(BLHaki.BuildInfo.Company)]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-// [assembly: Guid("")]
-[assembly: AssemblyVersion(BLHaki.BuildInfo.Version)]
-[assembly: AssemblyFileVersion(BLHaki.BuildInfo.Version)]
-[assembly: NeutralResourcesLanguage("en")]
 [assembly: MelonInfo(typeof(BLHaki.HakiMain), BLHaki.BuildInfo.Name, BLHaki.BuildInfo.Version, BLHaki.BuildInfo.Author, BLHaki.BuildInfo.DownloadLink)]
 
 
