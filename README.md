@@ -2,7 +2,7 @@ BL Haki!! It'll include Conquerors Haki and Armament Haki. I think Observation H
 
 
 Bugs/Features to be added:
-- TAKEDAMAGE(-9999f) plays the audio of the player getting hurt about 962362 times
+- ~~TAKEDAMAGE(-9999f) plays the audio of the player getting hurt about 962362 times~~
 - Global Volume
 - ControllerInput
 - Armament Haki
