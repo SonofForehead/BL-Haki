@@ -1,97 +1,72 @@
-﻿using UnityEngine;
-using MelonLoader;
+﻿using MelonLoader;
 using BoneLib;
-using Il2CppSLZ.Bonelab;
-using Il2CppSLZ.Bonelab.VoidLogic;
-using Il2CppSLZ.Bonelab.Obsolete;
+using UnityEngine.Rendering;
+using UnityEngine;
+using Il2CppSLZ.Marrow.VoidLogic;
 using Il2CppSLZ.Player;
+using Il2CppSLZ.Marrow;
+using Jevil.PostProcessing;
 
 namespace BLHaki
 {
     public class ConquerorsLogic : MelonMod
     {
-        public static Vector3 headPos;
         public static DamageVolume damageVolume;
-        public static AudioSource conqSFX;
-        public static float conqTimer = 2f;
-        public static bool conqTimerRunning = false;
-        public static bool armamentEnabled;
+        public static SphereCollider sphereCollider;
 
-        public static void OnEnable(bool enable)
-        {
-            if (enable)
-            {
-                armamentEnabled = true;
-            }
-            else
-            {
-                armamentEnabled = false;
-            }
-        }
-
-        public static void ConquerorsHakiFunction()
-        {
-            if (conqSFX.isPlaying == false)
-            {
-                HakiAudioManager.Play(HakiMain.conquerorSFX);
-                conqTimerRunning = true;
-            }
-        }
-
+        public static float timer = 2f;
+        public static bool timerRunning = false;
         public static void ActivateConquerorsHaki()
         {
-            //Player.RigManager.GetComponentInChildren<Health>().healthMode = Health.HealthMode.Invincible;
-            HakiAudioManager.HakiManager.GetComponent<DamageVolume>().enabled = true;
-        }
+            MelonLogger.Msg("Activated");
+            damageVolume.enabled = true;
 
-        public static void DeactivateConquerorsHaki()
-        {
-            conqTimerRunning = false;
-            conqTimer = 2f;
-            //Player.RigManager.GetComponentInChildren<Health>().healthMode = Health.HealthMode.Mortal;
-            HakiAudioManager.HakiManager.GetComponent<DamageVolume>().enabled = false;
-        }
-
-        public static void ConquerorsHakiLogic() // OnUpdate
-        {
-            if (Player.RigManager)
+            if (HakiMain.audioSource.isPlaying == false)
             {
-                headPos = Player.PhysicsRig.m_head.position;
-                HakiAudioManager.HakiManager.transform.position = headPos;
-
-                HakiAudioManager.HakiManager.GetComponent<SphereCollider>().radius = HakiBoneMenu.radius;
-                damageVolume._effectiveDistance = HakiBoneMenu.radius;
-            }
-
-            if (conqTimerRunning)
-            {
-                conqTimer -= Time.deltaTime;
-                ActivateConquerorsHaki();
-            }
-            
-            if (conqTimer <= 0f)
-            {
-                DeactivateConquerorsHaki();
-            }
-
-            if (Player.RigManager && Player.RightController._thumbstickDown)
-            {
-                ConquerorsLogic.ConquerorsHakiFunction();
+                HakiAudioManager.Play(HakiMain.conquerorSFX);
+                timerRunning = true;
             }
         }
 
-        public static void ConquerorsComponents() // OnLevelLoad
+        public static void ConquerorsUpdate()
         {
-            conqSFX = HakiAudioManager.HakiManager.GetComponent<AudioSource>();
+            if (timerRunning == true)
+            {
+                Player.RigManager.health.SetFullHealth();
+                timer -= Time.deltaTime;
+                MelonLogger.Msg("Timer Going Down", timer);
+            }
 
-            // Add VoidLogicDamageVolume
+            if(timer <= 0f)
+            {
+                timerRunning = false;
+                timer = 2f;
+
+                MelonLogger.Msg("Deactivated");
+                damageVolume.enabled = false;
+                Player.RigManager.GetComponentInChildren<Il2CppSLZ.Marrow.Health>().healthMode = Il2CppSLZ.Marrow.Health.HealthMode.Mortal;
+            }
+        }
+
+        public static void ConquerorsHakiComponents()
+        {
+            MelonLogger.Msg("Components Added");
             HakiAudioManager.HakiManager.AddComponent<DamageVolume>();
             HakiAudioManager.HakiManager.AddComponent<SphereCollider>();
-            HakiAudioManager.HakiManager.GetComponent<SphereCollider>().isTrigger = true;
             damageVolume = HakiAudioManager.HakiManager.GetComponent<DamageVolume>();
-            damageVolume.enabled = false;
-            damageVolume._damageType = Il2CppSLZ.Marrow.Data.AttackType.Fire;
+            sphereCollider = HakiAudioManager.HakiManager.GetComponent<SphereCollider>();
+
+            sphereCollider.radius = 15;
+            damageVolume._effectiveDistance = 15;
+
+            damageVolume._mapLow = 1;
+            damageVolume._mapHigh = 9999;
             damageVolume._damage = 100;
+            damageVolume._damageType = Il2CppSLZ.Marrow.Data.AttackType.Fire;
+            damageVolume.enabled = false;
+
+            sphereCollider.isTrigger = true;
         }
+
     }
 }

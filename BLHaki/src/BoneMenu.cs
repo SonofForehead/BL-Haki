@@ -5,28 +5,32 @@ using BoneLib.BoneMenu.UI;
 
 namespace BLHaki
 {
-    public class HakiBoneMenu : MelonMod // Need to create 2 enum elements for controller inputs
+    public class HakiBoneMenu : MelonMod
     {
-        public static int radius = 10;
-        private static bool isEnabled;
-        public static bool IsEnabled { get => isEnabled; set => isEnabled = value; }
-
-        public enum controls
-        {
-            joystick = 0,
-            doubletap = 1,
-            button = 2
-        }
-
+        public static int radius;
+        public static bool armBool;
         public static void CreateBoneMenu()
         {
-            Page menuCategory = Page.Root.CreatePage("BL Haki", Color.black);
-            Page armamentPanel = menuCategory.CreatePage("Armament Haki", Color.black);
-            Page conquerorsPanel = menuCategory.CreatePage("Conquerors Haki", Color.yellow);
-            conquerorsPanel.CreateBool("Haki Toggle", Color.black, IsEnabled, ConquerorsLogic.OnEnable);
-            armamentPanel.CreateFunction("Activate Armament Haki", Color.black, ArmamentLogic.ActivateArmHaki);
-            conquerorsPanel.CreateInt("Radius", Color.blue, radius, 1, 1, 100, (value) => radius = value);
-            conquerorsPanel.CreateFunction("Activate Conquerors Haki", Color.black, ConquerorsLogic.ConquerorsHakiFunction);
+            Page mainCategory = Page.Root.CreatePage("BL Haki", Color.black);
+            Page conqPage = mainCategory.CreatePage("Conquerors Haki", Color.yellow);
+            Page armPage = mainCategory.CreatePage("Armament Haki", Color.red);
+            armPage.CreateBool("Armament Haki", Color.black, true, ToggleArm);
+            armPage.CreateFunction("Activate Armament Haki", Color.red, ArmamentLogic.ActivateArmHaki);
+            conqPage.CreateFunction("Activate Conquerors Haki", Color.white, ConquerorsLogic.ActivateConquerorsHaki);
+            conqPage.CreateInt("Radius", Color.red, 20, 5, 0, 1000, (value) => radius = value);
         }
+
+        public static void ToggleArm(bool armToggle)
+        {
+            if (armToggle)
+            {
+                armBool = true;
+            }
+            else
+            {
+                armBool = false;
+            }
+        }
+
     }
 }

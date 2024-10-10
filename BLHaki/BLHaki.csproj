@@ -36,8 +36,14 @@
     <Reference Include="Il2CppSLZ.Marrow.VoidLogic.Core">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.VoidLogic.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Il2CppSLZ.Marrow.VoidLogic.Engine">
+      <HintPath>D:\SteamLibrary\steamapps\common\BONELAB\MelonLoader\Il2CppAssemblies\Il2CppSLZ.Marrow.VoidLogic.Engine.dll</HintPath>
+    </Reference>
     <Reference Include="Il2CppSLZ.ModIO">
       <HintPath>D:\Steam\steamapps\common\BONELAB\MelonLoader\Il2CppAssemblies\Il2CppSLZ.ModIO.dll</HintPath>
+    </Reference>
+    <Reference Include="JeviLib">
+      <HintPath>D:\SteamLibrary\steamapps\common\BONELAB\Mods\JeviLib.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader, Version=0.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -79,6 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="src\HakiTypes\Patches.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\Resources\Bundles\hakiassets" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="src\Resources\Bundles\hakiassets" />
   </ItemGroup>
   <PropertyGroup>
     <NeutralLanguage>en</NeutralLanguage>
